@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeremy Ehly | Portfolio</title>
+  <style>
+    @font-face {
+      font-family: "GilroyExtra";
+      src: local("Gilroy ExtraBold"), local("Gilroy-ExtraBold"), url("Fonts/Gilroy-ExtraBold.otf") format("opentype");
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "PrintBold";
+      src: local("PrintBoldOT"), local("Print Bold OT"), url("Fonts/PrintBoldOT.OTF") format("opentype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    :root {
+      --paper: #f7f4ec;
+      --paper-soft: #ded8c7;
+      --ink: #000000;
+      --muted: #3d3b37;
+      --line: #000000;
+      --shadow: none;
+      --accent: #f35b3d;
+      --accent-strong: #f35b3d;
+      --accent-soft: rgba(243, 91, 61, 0.14);
+      --red: #f35b3d;
+      --yellow: #fee342;
+      --blue: #6f7f9b;
+      --green: #658f57;
+      --brown: #9a7652;
+      --stone: #b7b29d;
+      --white: #f7f4ec;
+      --black: #000000;
+      --max-width: 1300px;
+      --radius-xl: 0px;
+      --radius-lg: 0px;
+      --radius-md: 0px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PrintBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body * {
+      font-family: "PrintBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+      font-family: "PrintBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      position: relative;
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 20px clamp(18px, 3vw, 36px) 56px;
+    }
+
+    .topbar,
+    .hero-copy,
+    .hero-panel,
+    .about-card,
+    .link-card,
+    .project-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 40px rgba(20, 18, 15, 0.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-mark {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .nav a::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(20, 18, 15, 0.14);
+      flex-shrink: 0;
+      transition: background-color 0.25s ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      transform: translateY(-1px);
+      border-color: var(--line);
+      background: var(--paper-soft);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .nav a:hover::before,
+    .nav a:focus-visible::before {
+      background: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+      gap: 22px;
+      min-height: calc(100vh - 130px);
+      padding: 24px 0 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(28px, 4vw, 46px);
+    }
+
+    .hero-intro {
+      display: block;
+    }
+
+    .hero-text {
+      min-width: 0;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      margin-top: 24px;
+    }
+
+    .hero-portrait {
+      justify-self: end;
+      width: min(100%, 220px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--paper-soft);
+      overflow: hidden;
+      box-shadow: 0 16px 34px rgba(20, 18, 15, 0.08);
+      aspect-ratio: 4 / 5;
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+    }
+
+    .pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .pill-green::before {
+      background: var(--green);
+    }
+
+    .pill-yellow::before {
+      background: var(--yellow);
+    }
+
+    .pill-blue::before {
+      background: var(--blue);
+    }
+
+    .pill-orange::before {
+      background: var(--red);
+    }
+
+    .hero h1 {
+      margin: 18px 0 0;
+      font-size: clamp(4.2rem, 12vw, 9.2rem);
+      line-height: 0.88;
+      letter-spacing: -0.085em;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero p {
+      max-width: 15ch;
+      margin: 18px 0 0;
+      font-size: clamp(1.05rem, 2.1vw, 1.48rem);
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .hero p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .hero-accent {
+      font: inherit;
+      font-weight: inherit;
+      font-style: normal;
+      color: inherit;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(20, 18, 15, 0.22);
+      background: var(--paper-soft);
+      outline: none;
+    }
+
+    .button-primary {
+      background: var(--accent-strong);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .button-primary:hover,
+    .button-primary:focus-visible {
+      background: var(--accent);
+    }
+
+    .hero-notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .hero-note::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-panel {
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+      padding: clamp(24px, 3vw, 34px);
+    }
+
+    .hero-panel-header {
+      max-width: 22rem;
+    }
+
+    .hero-panel-header h2 {
+      margin: 14px 0 0;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-panel-header p {
+      max-width: 100%;
+      margin-top: 16px;
+      font-size: 1rem;
+    }
+
+    .focus-list,
+    .stat-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .focus-item,
+    .stat-item {
+      display: grid;
+      gap: 6px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .focus-item:first-child,
+    .stat-item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .focus-label,
+    .stat-value {
+      font-size: 1.12rem;
+      line-height: 1.15;
+    }
+
+    .focus-copy,
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.48;
+    }
+
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 48px 0 10px;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      margin: 12px 0 0;
+      font-size: clamp(2.35rem, 5vw, 4.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.07em;
+    }
+
+    .section-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper-soft);
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1;
+      letter-spacing: 0.08em;
+    }
+
+    .section-outline::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .section-copy {
+      max-width: 62rem;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.68;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 20px;
+    }
+
+    .about-card,
+    .link-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .about-card p,
+    .link-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .about-card p + p,
+    .link-card p + p {
+      margin-top: 14px;
+    }
+
+    .link-stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .inline-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .inline-link:hover,
+    .inline-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(20, 18, 15, 0.2);
+      background: var(--paper-soft);
+      outline: none;
+    }
+
+    .inline-link small {
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .project-grid {
+      display: grid;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      --accent: var(--accent);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      overflow: visible;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within {
+      border-color: rgba(20, 18, 15, 0.22);
+      box-shadow: 0 24px 78px rgba(20, 18, 15, 0.12);
+    }
+
+    .project-card[open] {
+      border-color: rgba(255, 47, 146, 0.3);
+      box-shadow: 0 24px 78px rgba(20, 18, 15, 0.12);
+    }
+
+    .project-card summary {
+      display: grid;
+      grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+      gap: 0;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .project-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .project-media {
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      border-radius: 999px 0 0 999px;
+      background: linear-gradient(135deg, #ff9bc8 0%, #ff5ca6 100%);
+    }
+
+    .project-media img,
+    .project-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease, filter 0.55s ease;
+    }
+
+    .project-card[open] .project-media {
+      transform: translateX(-8px);
+      border-radius: 999px;
+    }
+
+    .project-card[open] .project-body {
+      transform: translateX(8px);
+      border-radius: 999px;
+    }
+
+    .project-card:hover .project-media img,
+    .project-card:hover .project-media video,
+    .project-card:focus-within .project-media img,
+    .project-card:focus-within .project-media video {
+      transform: scale(1.05);
+      filter: saturate(1.06) contrast(1.02);
+    }
+
+    .media-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(27, 17, 23, 0.5);
+      color: #fff;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .media-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .project-body {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: center;
+      padding: 26px 76px 26px 30px;
+      border-radius: 0 999px 999px 0;
+      background: var(--accent-strong);
+      color: #fff;
+    }
+
+    .project-body::before,
+    .project-card summary::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 22px;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-50%);
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+
+    .project-card summary::after {
+      content: "+";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .project-card[open] summary::after {
+      transform: translateY(-50%) rotate(45deg);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .project-body::before {
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .project-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .project-description {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.98rem;
+      line-height: 1.58;
+    }
+
+    .project-expand {
+      display: grid;
+      gap: 18px;
+      padding: 14px 22px 22px;
+    }
+
+    .project-spill {
+      overflow: hidden;
+      border: 1px solid rgba(255, 47, 146, 0.2);
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: 0 20px 54px rgba(27, 17, 23, 0.08);
+    }
+
+    .project-spill img,
+    .project-spill video {
+      width: 100%;
+      height: auto;
+      max-height: 620px;
+      object-fit: cover;
+      background: #f7f1f5;
+    }
+
+    .project-extras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-extra {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 47, 146, 0.18);
+      border-radius: 999px;
+      color: var(--accent-strong);
+      background: var(--accent-soft);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .project-extra::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .project-extra:hover,
+    .project-extra:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(20, 18, 15, 0.2);
+      background: var(--paper-soft);
+      outline: none;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      margin-top: 6px;
+      color: var(--ink);
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .project-link::after {
+      content: "+";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      line-height: 1;
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+
+    .project-link:hover::after,
+    .project-link:focus-visible::after {
+      transform: rotate(90deg);
+      background: var(--paper-soft);
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 54px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .hero-portrait {
+        justify-self: start;
+        width: min(100%, 260px);
+      }
+
+      .project-card summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding-top: 14px;
+      }
+
+      .topbar {
+        position: static;
+        border-radius: 24px;
+      }
+
+      .section-header {
+        grid-template-columns: 1fr;
+      }
+
+      .section-outline {
+        justify-self: start;
+      }
+
+      .project-card {
+        border-radius: 28px;
+      }
+
+      .project-media {
+        min-height: 200px;
+        border-radius: 28px 28px 0 0;
+      }
+
+      .project-body {
+        padding: 24px 58px 24px 22px;
+        border-radius: 0 0 28px 28px;
+      }
+
+      .project-card[open] .project-media,
+      .project-card[open] .project-body {
+        transform: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.4rem, 20vw, 5.8rem);
+      }
+
+      .hero p {
+        max-width: none;
+      }
+
+      .page::before,
+      .page::after {
+        opacity: 0.34;
+        transform: scale(0.72);
+        transform-origin: center;
+      }
+    }
+
+    .topbar,
+    .hero-copy,
+    .hero-panel,
+    .about-card,
+    .link-card,
+    .project-card,
+    .button,
+    .hero-note,
+    .pill,
+    .section-outline,
+    .inline-link,
+    .project-spill,
+    .project-extra,
+    .project-meta span,
+    .media-badge,
+    .project-link::after,
+    .hero-portrait {
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .page {
+      padding: 14px 18px 32px;
+    }
+
+    .topbar,
+    .hero,
+    .about-grid,
+    .project-grid {
+      gap: 10px;
+    }
+
+    .topbar {
+      margin-bottom: 10px;
+      padding: 10px 12px;
+    }
+
+    .brand-mark {
+      border-radius: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+    }
+
+    .nav a,
+    .button,
+    .hero-note,
+    .pill,
+    .section-outline,
+    .inline-link,
+    .project-extra,
+    .project-meta span {
+      border-radius: 0;
+    }
+
+    .nav a {
+      padding: 6px 10px;
+    }
+
+    .nav a::before,
+    .pill::before,
+    .hero-note::before,
+    .section-outline::before,
+    .project-extra::before {
+      border-radius: 0;
+    }
+
+    .hero {
+      min-height: 0;
+      padding: 0 0 10px;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .about-card,
+    .link-card {
+      padding: 18px;
+      background: var(--white);
+    }
+
+    .hero-copy {
+      gap: 18px;
+      justify-content: flex-start;
+    }
+
+    .hero-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 16px;
+      align-items: end;
+    }
+
+    .hero-portrait {
+      width: 100%;
+      justify-self: stretch;
+      align-self: stretch;
+      background: var(--paper);
+    }
+
+    .hero-portrait img {
+      filter: none;
+    }
+
+    .hero-actions,
+    .hero-notes,
+    .link-stack {
+      gap: 8px;
+    }
+
+    .hero-notes {
+      margin-top: auto;
+    }
+
+    .hero-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+
+    .hero-panel-header,
+    .section-copy {
+      max-width: none;
+    }
+
+    .hero-panel-header,
+    .focus-list,
+    .stat-list {
+      margin: 0;
+    }
+
+    .focus-list,
+    .stat-list {
+      gap: 0;
+    }
+
+    .focus-item,
+    .stat-item {
+      padding: 10px 0;
+      gap: 4px;
+      border-top: 2px solid var(--ink);
+    }
+
+    .focus-item:first-child,
+    .stat-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .section {
+      padding: 22px 0 0;
+    }
+
+    .section-header {
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .hero h1,
+    .hero-panel-header h2,
+    .section-title,
+    .project-title,
+    .focus-label,
+    .stat-value {
+      font-family: "GilroyExtra", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    .hero h1 {
+      font-size: clamp(4rem, 11vw, 8.4rem);
+      line-height: 0.87;
+    }
+
+    .hero p,
+    .hero-panel-header p,
+    .about-card p,
+    .link-card p,
+    .focus-copy,
+    .stat-label,
+    .section-copy,
+    .project-description {
+      color: var(--muted);
+    }
+
+    .section-title {
+      margin-top: 6px;
+    }
+
+    .button-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .inline-link:hover,
+    .inline-link:focus-visible,
+    .project-extra:hover,
+    .project-extra:focus-visible {
+      transform: none;
+      background: var(--paper-soft);
+      border-color: var(--ink);
+    }
+
+    .project-grid {
+      gap: 10px;
+    }
+
+    .project-card {
+      border-color: var(--ink);
+      background: transparent;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within,
+    .project-card[open] {
+      border-color: var(--ink);
+      box-shadow: none;
+    }
+
+    .project-card summary {
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .project-media {
+      min-height: 260px;
+      border-right: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--white);
+    }
+
+    .project-media img,
+    .project-media video {
+      width: 100%;
+      height: 100%;
+    }
+
+    .project-media img {
+      object-fit: contain;
+      object-position: center;
+      background: var(--white);
+      padding: 12px;
+    }
+
+    .project-media video {
+      object-fit: cover;
+    }
+
+    .project-card:hover .project-media img,
+    .project-card:hover .project-media video,
+    .project-card:focus-within .project-media img,
+    .project-card:focus-within .project-media video,
+    .project-card[open] .project-media,
+    .project-card[open] .project-body {
+      transform: none;
+      filter: none;
+      border-radius: 0;
+    }
+
+    .media-badge {
+      top: 8px;
+      left: 8px;
+      padding: 6px 8px;
+      max-width: calc(100% - 20px);
+      background: rgba(247, 244, 236, 0.92);
+      color: var(--ink);
+      border-color: var(--ink);
+      font-size: 0.58rem;
+      letter-spacing: 0.09em;
+      backdrop-filter: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .media-badge::before {
+      background: var(--accent);
+    }
+
+    .project-body {
+      min-height: 260px;
+      padding: 16px 52px 16px 16px;
+      border-radius: 0;
+      background: var(--accent);
+      color: var(--accent-contrast, var(--white));
+    }
+
+    .project-card summary::after {
+      right: 10px;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .project-meta {
+      color: inherit;
+      gap: 8px;
+      opacity: 0.92;
+    }
+
+    .project-meta span {
+      min-height: 24px;
+      padding: 0 8px;
+      border-width: 2px;
+      border-color: currentColor;
+      background: transparent;
+    }
+
+    .project-title {
+      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      line-height: 0.94;
+    }
+
+    .project-description {
+      color: inherit;
+      opacity: 0.9;
+      max-width: 34ch;
+    }
+
+    .project-expand {
+      gap: 10px;
+      padding: 10px 0 0;
+    }
+
+    .project-spill {
+      border-width: 2px;
+      border-color: var(--ink);
+      border-radius: 0;
+    }
+
+    .project-spill img,
+    .project-spill video {
+      max-height: 720px;
+      background: var(--paper);
+    }
+
+    .project-link {
+      margin-top: 0;
+      padding: 0 2px;
+    }
+
+    .project-link::after {
+      width: 20px;
+      height: 20px;
+      border-width: 2px;
+      border-radius: 0;
+    }
+
+    .footer {
+      margin-top: 26px;
+      padding-top: 14px;
+      border-top: 2px solid var(--ink);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-intro {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 10px;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.1rem, 18vw, 5.2rem);
+      }
+
+      .project-card,
+      .project-card summary,
+      .project-media,
+      .project-body,
+      .media-badge,
+      .project-card summary::after {
+        border-radius: 0;
+      }
+
+      .project-card summary {
+        grid-template-columns: 1fr;
+      }
+
+      .project-media {
+        min-height: 210px;
+        border-right: 0;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .project-body {
+        padding: 14px 44px 14px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Jeremy Ehly | Portfolio</span>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#ai-work">AI Work</a>
+        <a href="#student-work">Student Work</a>
+        <a href="#professional-work">Professional Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy reveal">
+          <div class="hero-intro">
+            <div class="hero-text">
+              <div class="pill pill-yellow">CU Boulder | Environmental Design</div>
+              <h1>
+                <span>Jeremy</span>
+                <span>Ehly</span>
+              </h1>
+              <p>
+                Architecture and design professor at <strong>CU Boulder</strong> creating rigorous teaching and architectural projects that move
+                <span class="hero-accent">from the fantastic to the pragmatic.</span>
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="Portfolio/20160815%20Jeremy%20Ehly%20Portfolio%20Final%20sm.pdf" target="_blank" rel="noreferrer">Open Portfolio PDF</a>
+                <a class="button" href="Resume/Jeremy%20Ehly%20CV%202026.pdf" target="_blank" rel="noreferrer">Open CV</a>
+              </div>
+            </div>
+
+            <div class="hero-portrait">
+              <img src="Headshot/Jeremy%20Ehly%20HeadShot.jpeg" alt="Jeremy Ehly headshot." loading="eager" decoding="async">
+            </div>
+          </div>
+
+          <div>
+            <div class="hero-notes" aria-label="Highlights">
+              <span class="hero-note">Design-Build Pedagogy</span>
+              <span class="hero-note">Ethical AI Literacy</span>
+              <span class="hero-note">Digital Craft + Visualization</span>
+              <span class="hero-note">Architecture, Ecology, And Public Work</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal">
+          <div class="hero-panel-header">
+            <div class="pill pill-green">Studio Focus</div>
+            <h2>AI Literacy, Authorship, And Intentional Design Workflow.</h2>
+            <p>Recent teaching and service statements frame AI as a tool for disciplined creative exploration, not a substitute for judgment, curiosity, or human agency.</p>
+          </div>
+
+          <div class="focus-list">
+            <div class="focus-item">
+              <div class="focus-label">CU Boulder’s first generative AI design course</div>
+              <div class="focus-copy">“Lassoing the Robots” asks students to treat AI as a creative collaborator rather than a replacement for human thinking, with authorship and ethical responsibility held at the center.</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-label">Campus AI literacy leadership</div>
+              <div class="focus-copy">Work with the Boulder Faculty Assembly AI Working Group, AI Literacy Ambassador program, workshops, and student town halls supports more thoughtful AI use across CU Boulder and ENVD.</div>
+            </div>
+            <div class="focus-item">
+              <div class="focus-label">Intentional workflow design</div>
+              <div class="focus-copy">AI is taught alongside research, reflection, digital representation, and critique so that new tools strengthen design thinking rather than flatten it.</div>
+            </div>
+          </div>
+
+          <div class="stat-list">
+            <div class="stat-item">
+              <div class="stat-value">Public AI dialogue</div>
+              <div class="stat-label">Student work from AI courses has been exhibited publicly alongside the AIA traveling exhibition “Architecture After AI.”</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">Human creativity first</div>
+              <div class="stat-label">The underlying goal is ethical, grounded design practice with empathy, originality, and clear communicative intention.</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="section reveal">
+        <div class="section-header">
+          <div>
+            <div class="pill pill-orange">About</div>
+            <h2 class="section-title">Design Education Rooted In Rigor, Care, And Experimentation.</h2>
+          </div>
+          <div class="section-outline" aria-hidden="true">01</div>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card">
+            <div class="pill pill-blue">A Short Introduction</div>
+            <p>Jeremy Ehly is a CU Boulder design professor and licensed architect whose teaching spans theory, design-build, digital representation, AI, and professional practice. His courses thrive on ambitious projects driven by intensely personal connections between students and their work.</p>
+            <p>Across ENVD, he asks students to unite rigorous thinking with meaningful doing: to research deeply, design responsibly, communicate with clarity, and understand the broader implications of what they make. His current teaching statement frames that work through ethics, human experience, ecological care, curiosity, rigor, and joy.</p>
+            <p>The result is a studio culture that is minimalist in form but expansive in possibility, equally comfortable with built work, visualization, fabrication, and the evolving questions surrounding AI in design education.</p>
+          </article>
+
+          <aside class="link-card">
+            <p>Recent documents in this folder:</p>
+            <div class="link-stack">
+              <a class="inline-link" href="Resume/Jeremy%20Ehly%20CV%202026.pdf" target="_blank" rel="noreferrer">
+                <span>Curriculum Vitae</span>
+                <small>PDF</small>
+              </a>
+              <a class="inline-link" href="Portfolio/20160815%20Jeremy%20Ehly%20Portfolio%20Final%20sm.pdf" target="_blank" rel="noreferrer">
+                <span>Portfolio Archive</span>
+                <small>PDF</small>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="ai-work" class="section reveal">
+        <div class="section-header">
+          <div>
+            <div class="pill pill-green">Generative AI</div>
+            <h2 class="section-title">Spring 2026 Work In Motion, Atmosphere, And Speculative Visual Storytelling.</h2>
+          </div>
+          <div class="section-outline" aria-hidden="true">02</div>
+        </div>
+
+        <p class="section-copy">This section uses the media in <code>Projects/AI</code>. The work extends Jeremy Ehly’s teaching around AI literacy by treating generative tools as part of a broader design workflow for testing authorship, form, narrative, atmosphere, and iteration. Each project opens from a horizontal pill into a larger still or video study.</p>
+
+        <div id="ai-grid" class="project-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="student-work" class="section reveal">
+        <div class="section-header">
+          <div>
+            <div class="pill pill-yellow">Student Projects</div>
+            <h2 class="section-title">Six Teaching Examples From The Archive.</h2>
+          </div>
+          <div class="section-outline" aria-hidden="true">03</div>
+        </div>
+
+        <div id="student-grid" class="project-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="professional-work" class="section reveal">
+        <div class="section-header">
+          <div>
+            <div class="pill pill-orange">Professional Projects</div>
+            <h2 class="section-title">Built Work, Competition Work, And Visualization Studies From The Archive.</h2>
+          </div>
+          <div class="section-outline" aria-hidden="true">04</div>
+        </div>
+
+        <div id="professional-grid" class="project-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer id="contact" class="footer reveal">
+      <div>
+        <strong>Jeremy Ehly</strong><br>
+        Architecture and design professor, CU Boulder
+      </div>
+      <div>
+        <a href="mailto:Jeremy.ehly@colorado.edu">Jeremy.ehly@colorado.edu</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const studentProjects = [
+      {
+        title: "myPod Pavilion",
+        meta: "Digital Design + Fabrication",
+        year: "2011",
+        accent: "var(--red)",
+        textColor: "#ffffff",
+        description: "Students develop a minimal pavilion in a sacred site using parametric modeling with Grasshopper, V-Ray, and presentation software.",
+        image: "generated/student-previews/mypod-pavilion.png",
+        alt: "myPod Pavilion student work preview from the portfolio PDF.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=56",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Light Fixture Design + Fabrication",
+        meta: "Digital Design + Fabrication",
+        year: "2011",
+        accent: "var(--yellow)",
+        textColor: "#000000",
+        description: "Students create a light fixture from two descriptive words while learning Rhino, laser cutting, and assembly documentation.",
+        image: "generated/student-previews/light-fixture.png",
+        alt: "Light fixture design and fabrication student project preview from the portfolio PDF.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=62",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Rendering + Animation",
+        meta: "Rendering Seminar",
+        year: "2012",
+        accent: "var(--blue)",
+        textColor: "#ffffff",
+        description: "The seminar focused on 3DS Max with V-Ray to produce high quality architectural renderings and a final three-minute animation.",
+        image: "generated/student-previews/rendering-animation.png",
+        alt: "Rendering and animation student work preview from the portfolio PDF.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=65",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Rhino City",
+        meta: "Intro to Rhino",
+        year: "2013",
+        accent: "var(--green)",
+        textColor: "#ffffff",
+        description: "Students move from 2D cityscapes to 3D modeling and rendering within the first five weeks, prioritizing experimentation over precision.",
+        image: "generated/student-previews/rhino-city.png",
+        alt: "Rhino City assignment preview from the portfolio PDF.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=71",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Re-Create Space",
+        meta: "Intro to Rhino",
+        year: "2011-2015",
+        accent: "var(--stone)",
+        textColor: "#000000",
+        description: "Students precisely recreate a familiar room to learn architectural drafting, 3D modeling, and photorealistic rendering.",
+        image: "generated/student-previews/recreate-space.png",
+        alt: "Re-Create Space student work preview from the portfolio PDF.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=73",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Aquaponic Farm",
+        meta: "Landscape Design Studio",
+        year: "2011",
+        accent: "var(--brown)",
+        textColor: "#ffffff",
+        description: "A proposal for a zero-energy aquaponics farm over abandoned gravel pits, creating a self-contained food-producing ecosystem.",
+        image: "generated/student-previews/aquaponic-farm.png",
+        alt: "Aquaponic farm student project preview from the portfolio PDF.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=79",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      }
+    ];
+
+    const aiProjects = [
+      {
+        title: "Turntable Building",
+        meta: "Generative AI Video",
+        year: "Spring 2026",
+        accent: "var(--red)",
+        textColor: "#ffffff",
+        description: "A motion-based architectural study using generative AI to test form, objecthood, and viewpoint through a looping rotating building sequence.",
+        image: "Projects/AI/jeremyehly_76707_Architectural_high_rise_building_graphic_dra_359c7f85-7ead-4aa7-83ee-e8df56e984be_0.png",
+        video: "Projects/AI/Turntable Building.mp4",
+        alt: "Turntable Building generative AI video study.",
+        link: "Projects/AI/Turntable Building.mp4",
+        linkLabel: "Open video",
+        mediaLabel: "Video",
+        extras: [
+          {
+            href: "Projects/AI/jeremyehly_76707_Architectural_high_rise_building_graphic_dra_359c7f85-7ead-4aa7-83ee-e8df56e984be_0.png",
+            label: "Still 01"
+          }
+        ]
+      },
+      {
+        title: "Graphic High-Rise Futures",
+        meta: "Generative AI Video",
+        year: "Spring 2026",
+        accent: "var(--blue)",
+        textColor: "#ffffff",
+        description: "A speculative high-rise narrative that blends graphic drawing language, urban context, and cinematic movement into a saturated city scene.",
+        image: "Projects/AI/jeremyehly_76707_Architectural_high_rise_building_located_in__e844243a-a603-4e3e-b9d4-b1fbd26c8181_3.png",
+        video: "Projects/AI/social_jeremyehly_76707_Architectural_high_rise_building_graphic_dra_be2b7333-7e32-4b46-a391-0481dd567702_2.mp4",
+        alt: "Graphic high-rise futures generative AI video.",
+        link: "Projects/AI/social_jeremyehly_76707_Architectural_high_rise_building_graphic_dra_be2b7333-7e32-4b46-a391-0481dd567702_2.mp4",
+        linkLabel: "Open video",
+        mediaLabel: "Video",
+        extras: [
+          {
+            href: "Projects/AI/midjourney-editor-1770930199509.png",
+            label: "Still 02"
+          },
+          {
+            href: "Projects/AI/jeremyehly_76707_Architectural_high_rise_building_graphic_dra_6b9da10f-7ed0-4399-8d59-1dcca81c72e7_2.png",
+            label: "Still 03"
+          }
+        ]
+      },
+      {
+        title: "Atmosphere + Worldbuilding",
+        meta: "Generative AI Still Studies",
+        year: "Spring 2026",
+        accent: "var(--stone)",
+        textColor: "#000000",
+        description: "Image-based explorations of atmosphere, interiors, character, and garment prompting that extend architectural thinking into narrative and material imagination.",
+        image: "Projects/AI/DALL·E 2024-02-06 11.57.26 - Please outpaint to extend the scene and match in perfectly in every way. .png",
+        alt: "AI outpainted cabin scene in a mountain landscape.",
+        link: "Projects/AI/DALL·E 2024-02-06 11.57.26 - Please outpaint to extend the scene and match in perfectly in every way. .png",
+        linkLabel: "Open still study",
+        mediaLabel: "Still",
+        extras: [
+          {
+            href: "Projects/AI/Change background to a forest scene and add in an elf like person wearing elf like futuristic clothing lying in the chair with a serene expression on their face.png",
+            label: "Forest Prompt"
+          },
+          {
+            href: "Projects/AI/jeremyehly_76707_httpss.mj.runmgLULOIS2vo_httpss.mj.run1UPv5x_97b01203-6e98-4e17-aaee-73477938b42b_0.png",
+            label: "Garment 01"
+          },
+          {
+            href: "Projects/AI/jeremyehly_76707_Subject__full_length_high_fashion_garment_co_4d31a4e9-71b7-49d2-96a8-de79f0025ff8_3.png",
+            label: "Garment 02"
+          }
+        ]
+      }
+    ];
+
+    const professionalProjects = [
+      {
+        title: "Blue Island Oyster Bar",
+        meta: "Restaurant Work",
+        year: "2016",
+        accent: "var(--green)",
+        textColor: "#ffffff",
+        description: "Photorealistic renderings using actual materials and lighting advanced the design dialogue from digital model toward documentation and construction.",
+        image: "Projects/Oyster Bar/07 SW Corner to Dining.jpg",
+        alt: "Blue Island Oyster Bar interior rendering.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=13",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Stranahan's Distillery",
+        meta: "Urban Distillery",
+        year: "2015",
+        accent: "var(--brown)",
+        textColor: "#ffffff",
+        description: "Invited competition to create an urban campus for a local distillery in Denver.",
+        image: "Projects/Stranahans/03 Renderings/Whiskey-Still_5.jpg",
+        alt: "Stranahan's Distillery nighttime rendering.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=18",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Souk Market + Residential",
+        meta: "Jeddah, Saudi Arabia",
+        year: "2012",
+        accent: "var(--yellow)",
+        textColor: "#000000",
+        description: "A culturally informed mixed-use neighborhood for Jeddah combining housing, retail, parking, and shared transit infrastructure.",
+        image: "Projects/Souk/021.jpg",
+        alt: "Souk market and residential development rendering.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=24",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "BAPE Headquarters",
+        meta: "Tokyo, Japan",
+        year: "2008",
+        accent: "var(--blue)",
+        textColor: "#ffffff",
+        description: "Commission to create a new headquarters for the international clothing line Bathing Ape in Tokyo.",
+        image: "Projects/BAPE HQ/BAPE HQ Rendering.jpg",
+        alt: "BAPE Headquarters rendering in Tokyo.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=31",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Bologna Train Station",
+        meta: "MVRDV Competition",
+        year: "2008",
+        accent: "var(--red)",
+        textColor: "#ffffff",
+        description: "Invited competition for a new high-speed transportation hub over existing rail lines with housing, offices, and cultural space.",
+        image: "Projects/Bologna Train Station/Station Night Bird View.jpg",
+        alt: "Bologna Train Station aerial night rendering.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=34",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      },
+      {
+        title: "Mile High United Way Lobby",
+        meta: "Professional Renderings",
+        year: "2013",
+        accent: "var(--stone)",
+        textColor: "#000000",
+        description: "Modeled in SketchUp and rendered in 3ds Max with V-Ray as part of a set of professional visualization studies.",
+        image: "Projects/Architectural Renderings/MHUW---Interior-Lobby-View-2.jpg",
+        alt: "Mile High United Way lobby rendering.",
+        link: "Portfolio/20160815 Jeremy Ehly Portfolio Final sm.pdf#page=39",
+        linkLabel: "Open portfolio page",
+        mediaLabel: "Archive"
+      }
+    ];
+
+    function encodePath(path) {
+      const hashIndex = path.indexOf("#");
+      if (hashIndex === -1) {
+        return encodeURI(path);
+      }
+
+      const filePath = path.slice(0, hashIndex);
+      const fragment = path.slice(hashIndex);
+      return encodeURI(filePath) + fragment;
+    }
+
+    function buildCard(project) {
+      const card = document.createElement("details");
+      card.className = "project-card reveal";
+      const accent = project.accent || "var(--accent)";
+      const accentContrast = project.textColor || "#ffffff";
+      card.style.setProperty("--accent", accent);
+      card.style.setProperty("--accent-contrast", accentContrast);
+
+      const summary = document.createElement("summary");
+
+      const media = document.createElement("div");
+      media.className = "project-media";
+
+      if (project.video) {
+        const video = document.createElement("video");
+        video.src = encodePath(project.video);
+        video.poster = project.image ? encodePath(project.image) : "";
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.autoplay = !reduceMotion;
+        video.controls = false;
+        video.preload = "metadata";
+        video.setAttribute("aria-label", project.alt);
+        media.appendChild(video);
+      } else {
+        const image = document.createElement("img");
+        image.src = encodePath(project.image);
+        image.alt = project.alt;
+        image.loading = "lazy";
+        image.decoding = "async";
+        media.appendChild(image);
+      }
+
+      const badge = document.createElement("span");
+      badge.className = "media-badge";
+      badge.textContent = project.mediaLabel || "Media";
+      media.appendChild(badge);
+
+      const body = document.createElement("div");
+      body.className = "project-body";
+
+      const meta = document.createElement("div");
+      meta.className = "project-meta";
+
+      const metaLabel = document.createElement("span");
+      metaLabel.textContent = project.meta;
+
+      const metaYear = document.createElement("span");
+      metaYear.textContent = project.year;
+
+      const title = document.createElement("h3");
+      title.className = "project-title";
+      title.textContent = project.title;
+
+      const description = document.createElement("p");
+      description.className = "project-description";
+      description.textContent = project.description;
+
+      summary.append(media, body);
+
+      const expand = document.createElement("div");
+      expand.className = "project-expand";
+
+      const spill = document.createElement("div");
+      spill.className = "project-spill";
+
+      if (project.video) {
+        const expandedVideo = document.createElement("video");
+        expandedVideo.src = encodePath(project.video);
+        expandedVideo.poster = project.image ? encodePath(project.image) : "";
+        expandedVideo.muted = true;
+        expandedVideo.loop = true;
+        expandedVideo.playsInline = true;
+        expandedVideo.autoplay = !reduceMotion;
+        expandedVideo.controls = true;
+        expandedVideo.preload = "metadata";
+        expandedVideo.setAttribute("aria-label", project.alt);
+        spill.appendChild(expandedVideo);
+      } else {
+        const expandedImage = document.createElement("img");
+        expandedImage.src = encodePath(project.image);
+        expandedImage.alt = project.alt;
+        expandedImage.loading = "lazy";
+        expandedImage.decoding = "async";
+        spill.appendChild(expandedImage);
+      }
+
+      const link = document.createElement("a");
+      link.className = "project-link";
+      link.href = encodePath(project.link);
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = project.linkLabel || "Open media";
+
+      meta.append(metaLabel, metaYear);
+      body.append(meta, title, description);
+
+      if (project.extras && project.extras.length) {
+        const extras = document.createElement("div");
+        extras.className = "project-extras";
+        project.extras.forEach((item) => {
+          const extra = document.createElement("a");
+          extra.className = "project-extra";
+          extra.href = encodePath(item.href);
+          extra.target = "_blank";
+          extra.rel = "noreferrer";
+          extra.textContent = item.label;
+          extras.appendChild(extra);
+        });
+        expand.appendChild(extras);
+      }
+
+      expand.append(spill, link);
+      card.append(summary, expand);
+
+      return card;
+    }
+
+    function renderGrid(containerId, projects) {
+      const container = document.getElementById(containerId);
+      projects.forEach((project) => {
+        container.appendChild(buildCard(project));
+      });
+    }
+
+    renderGrid("student-grid", studentProjects);
+    renderGrid("ai-grid", aiProjects);
+    renderGrid("professional-grid", professionalProjects);
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+    }
+
+  </script>
+</body>
+</html>
